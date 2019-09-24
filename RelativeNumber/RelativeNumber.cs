@@ -199,7 +199,12 @@
                 {
                     // cursor line - display real line number
                     var indx = offset + counter;
-                    displayNumber = lineNumbers[indx];
+                    // HACK - when opening a file with a fold, the indx can be out of range of lineNumbers.Count
+                    if (indx < lineNumbers.Count)
+                        displayNumber = lineNumbers[indx];
+                    else
+                        displayNumber = null;
+
                     counter += 1;
                 }
 
